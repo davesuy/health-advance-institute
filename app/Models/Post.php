@@ -11,7 +11,7 @@ use App\Services\ShardingService;
 
 class Post extends Model
 {
-    use Searchable, HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Searchable;
 
     protected $fillable = [
         'title', 'body', 'user_id',
@@ -40,7 +40,6 @@ class Post extends Model
         // Default to the current connection if user_id is not set
         return $this->connection;
     }
-
     public static function boot()
     {
         parent::boot();

@@ -2,13 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
+use App\Models\PostSeederModel;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PostFactory extends Factory
+class PostSeederModelFactory extends Factory
 {
-    protected $model = Post::class;
+    protected $model = PostSeederModel::class;
 
     public function definition()
     {

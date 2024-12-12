@@ -132,6 +132,11 @@ To install the project, follow these steps:
     ```bash
     php artisan migrate
     ```
+5. To seed the database, run the following command:
+
+    ```bash
+    php artisan db:seed
+      ```
 
 # Usage
 To start the application, use the following command:

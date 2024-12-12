@@ -3,34 +3,37 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Post;
+use App\Models\PostSeederModel;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 
 class PostSeeder extends Seeder
 {
     public function run()
     {
-        Log::info('Starting seeding for default database');
-        try {
-            Post::factory()->count(50)->create()->each(function ($post) {
-                $tags = Tag::inRandomOrder()->take(3)->pluck('id');
-                $post->tags()->attach($tags);
-            });
-            Log::info('Seeding for default database completed');
-        } catch (\Exception $e) {
-            Log::error('Error seeding default database:', ['exception' => $e]);
-        }
+        $this->seedShard('default');
+        $this->seedShard('hai');
+    }
 
-        Log::info('Starting seeding for hai database');
+    private function seedShard($shard)
+    {
+        Log::info("Starting seeding for {$shard} database");
         try {
-            Post::on('hai')->factory()->count(50)->create()->each(function ($post) {
-                $tags = Tag::on('hai')->inRandomOrder()->take(3)->pluck('id');
-                $post->tags()->attach($tags);
+            User::on($shard)->each(function ($user) use ($shard) {
+                // Create multiple posts with random user IDs
+                $posts = PostSeederModel::factory()->count(10)->create([
+                    'user_id' => User::on($shard)->inRandomOrder()->first()->id
+                ]);
+                $posts->each(function ($post) use ($shard) {
+                    $post->setConnection($shard);
+                    $tags = Tag::on($shard)->inRandomOrder()->take(3)->pluck('id');
+                    $post->tags()->attach($tags);
+                });
             });
-            Log::info('Seeding for hai database completed');
+            Log::info("Seeding for {$shard} database completed");
         } catch (\Exception $e) {
-            Log::error('Error seeding hai database:', ['exception' => $e]);
+            Log::error("Error seeding {$shard} database:", ['exception' => $e]);
         }
     }
 }

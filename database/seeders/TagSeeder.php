@@ -9,6 +9,12 @@ class TagSeeder extends Seeder
 {
     public function run()
     {
-        Tag::factory()->count(20)->create();
+        $tags = Tag::factory()->count(5)->make()->pluck('name')->toArray();
+
+        foreach ($tags as $tagName) {
+            if (!Tag::where('name', $tagName)->exists()) {
+                Tag::create(['name' => $tagName]);
+            }
+        }
     }
 }
