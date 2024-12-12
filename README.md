@@ -1,7 +1,7 @@
 # Quick Demonstration
 Please check this screen recording for a quick demo on how this application works in terms of search functionality and single-page application when clicking.
 
-[![Watch the video](https://www.loom.com/share/07838f9133dd477fbac00a4671c60151)
+https://www.loom.com/share/07838f9133dd477fbac00a4671c60151
 
 # Video Code Explanation
 1. https://www.loom.com/share/0c67848f6015428bb516641129d363c3
