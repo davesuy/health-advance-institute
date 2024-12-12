@@ -1,0 +1,1 @@
+<?php /**PATH /Users/davesuy/website-projects/health-advance-institute/resources/views/errors/404.blade.php ENDPATH**/ ?>

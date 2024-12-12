@@ -5,7 +5,7 @@
         <ul>
             <li v-for="result in results" :key="result.id">{{ result.title }}</li>
         </ul>
-        <nav>
+        <nav class="router-link">
             <router-link to="/all-posts">View All Posts</router-link>
         </nav>
     </div>
@@ -95,7 +95,7 @@ nav {
     margin-top: 20px;
 }
 
-router-link {
+.router-link {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -107,7 +107,7 @@ router-link {
     transition: background-color 0.3s;
 }
 
-router-link:hover {
+.router-link:hover {
     background-color: #0056b3;
 }
 </style>
